@@ -1,0 +1,4 @@
+node_modules
+.wepycache
+dist
+src/test-img
