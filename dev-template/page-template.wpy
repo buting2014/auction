@@ -1,8 +1,8 @@
 <style lang="scss" src="./TpStyle.scss">
 </style>
 
-<template lang="wxml">
-  <view>TpPage</view>
+<template lang="pug">
+  view.TpStyle
 </template>
 
 <script>
