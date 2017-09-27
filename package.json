@@ -11,6 +11,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
+    "gulp-uglify": "^3.0.0",
     "wepy": "^1.5.8",
     "wepy-async-function": "^1.4.4",
     "wepy-com-toast": "^1.0.2"
@@ -22,6 +27,7 @@
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "case": "^1.5.3",
     "cross-env": "^5.0.5",
     "eslint": "^3.18.0",
     "eslint-config-standard": "^7.1.0",

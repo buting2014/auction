@@ -4,6 +4,9 @@ module.exports = {
   parserOptions: {
     sourceType: 'module'
   },
+  "globals":{
+    "getCurrentPages": true
+  },
   env: {
     browser: true
   },
@@ -18,8 +21,8 @@ module.exports = {
   },
   // add your custom rules here
   'rules': {
-    // allow paren-less arrow functions
     "semi": ["off", "always"],
+    // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await
     'generator-star-spacing': 0,

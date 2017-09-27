@@ -1,0 +1,63 @@
+<style lang="scss" src="./TpStyle.scss">
+</style>
+
+<template lang="pug">
+  view.TpStyle
+</template>
+
+<script>
+  import wepy from 'wepy';
+  import deepClone from '../../utils/deep-clone';
+  import pageBaseMixin from '../../mixins/page-base-mixin.js';
+  import defaultData from './data.js';
+
+  export default class TpPage extends wepy.page {
+    config = {
+      navigationBarTitleText: 'TpPage',
+      navigationBarTextStyle: 'black',//导航栏标题颜色，仅支持 black/white
+      navigationBarBackgroundColor: '#fff', //导航栏背景颜色，如"#000000"
+      backgroundColor: '#ffffff', //窗口的背景色
+      backgroundTextStyle: 'dark', //下拉背景字体、loading 图的样式，仅支持 dark/light
+      enablePullDownRefresh: false, //是否开启下拉刷新，详见页面相关事件处理函数。
+      onReachBottomDistance: 50 // 页面上拉触底事件触发时距页面底部距离，单位为px
+    }
+
+    components = {};
+
+    mixins = [pageBaseMixin];
+    
+    defaultData = {};
+
+    data = deepClone(defaultData);
+
+    computed = {};
+
+    watch = {};
+
+    methods = {};
+
+    events = {};
+
+    onPrefetch(params, data) {} // 预加载
+
+    onLoad(params, data) {}	//Function	生命周期函数--监听页面加载
+
+    onShow() {}	//	Function	生命周期函数--监听页面显示
+
+    onRoute() {} // 只有在页面路由时才会触发（包括第一次进入页面）
+
+    onReady() {}	//	Function	生命周期函数--监听页面初次渲染完成
+
+    onHide() {}	//	Function	生命周期函数--监听页面隐藏
+
+    onUnload() {}	//	Function	生命周期函数--监听页面卸载
+
+    onPullDownRefresh() {}	//	Function	页面相关事件处理函数--监听用户下拉动作
+
+    onReachBottom() {}	//	Function	页面上拉触底事件的处理函数
+
+    onShareAppMessage() {}	//	Function	用户点击右上角转发
+
+    onPageScroll() {}	//页面滚动触发事件的处理函数
+  }
+</script>

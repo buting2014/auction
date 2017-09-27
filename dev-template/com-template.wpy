@@ -1,0 +1,23 @@
+<style lang="scss">
+  // 组件样式请使用 _ 线进行命名区分，避免污染引用文件样式
+</style>
+
+<template lang="wxml">
+  <view>Com</view>
+</template>
+
+<script>
+  import wepy from 'wepy';
+
+  export default class Com extends wepy.component {
+    props = {
+      item: {
+        type: Number,
+        default: 0
+      }
+    }
+
+    methods = {
+    }
+  }
+</script>
