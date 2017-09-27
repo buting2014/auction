@@ -1,1 +1,12 @@
 @import '../../style/index.scss';
+.detail {
+  .swiper {
+    height: 700rpx;
+    .slide-image {
+      height: 100%;
+      .image {
+        height: 100%;
+      }
+    }
+  }
+}

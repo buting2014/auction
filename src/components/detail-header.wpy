@@ -1,0 +1,33 @@
+<style lang="scss">
+  @import '../style/index.scss';
+  .detail-header {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30rpx 40rpx;
+    .title {
+      font-size: 36rpx;
+      color: $color-1;
+    }
+  }
+</style>
+
+<template lang="pug">
+  view.detail-header
+    view.title {{title}}
+</template>
+
+<script>
+  import wepy from 'wepy';
+
+  export default class DetailHeader extends wepy.component {
+    props = {
+      title: {
+        type: String,
+        default: ''
+      }
+    }
+    data = {}
+    methods = {
+    }
+  }
+</script>
