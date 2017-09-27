@@ -1,0 +1,13 @@
+@mixin flexible($main: center, $side: center) {
+  display: flex;
+  justify-content: $main;
+  align-items: $side;
+}
+
+@mixin ellipsis($column) {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $column;
+  -webkit-box-orient: vertical;
+}

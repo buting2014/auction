@@ -31,7 +31,7 @@ gulp.task('new', function() {
       if (exists) {
         console.warn('页面名已经被占用，请更换名字');
       } else {
-        gulp.start('page', 'addPathToConfig');
+        gulp.start('page', 'data', 'scss', 'addPathToConfig');
       }
     });
   }
@@ -53,14 +53,29 @@ gulp.task('page', function() {
 
   return gulp.src('./dev-template/page-template.wpy')
     .pipe(replace('TpPage', Case.pascal(name)))
+    .pipe(replace('TpStyle', name))
     .pipe(rename({basename: name, extname: '.wpy'}))
+    .pipe(gulp.dest('./src/pages/' + name));
+});
+// 添加data.js
+gulp.task('data', function() {
+  let name = options.page;
+
+  return gulp.src('./dev-template/data.js')
+  .pipe(gulp.dest('./src/pages/' + name));
+});
+// 添加scss
+gulp.task('scss', function() {
+  let name = options.page;
+
+  return gulp.src('./dev-template/style.scss')
+    .pipe(rename({basename: name, extname: '.scss'}))
     .pipe(gulp.dest('./src/pages/' + name));
 });
 
 // 将 page 路径添加到 app中
 gulp.task('addPathToConfig', function() {
   let name = options.page;
-
   return gulp.src('./src/app.wpy')
     .pipe(replace('//path', `'pages/${name}/${name}',\n\t\t\t//path`))
     .pipe(gulp.dest('./src'));

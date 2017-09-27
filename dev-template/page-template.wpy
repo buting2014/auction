@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="scss" src="./TpStyle.scss">
 </style>
 
 <template lang="wxml">
@@ -9,6 +9,7 @@
   import wepy from 'wepy';
   import deepClone from '../../utils/deep-clone';
   import pageBaseMixin from '../../mixins/page-base-mixin.js';
+  import defaultData from './data.js';
 
   export default class TpPage extends wepy.page {
     config = {
@@ -27,7 +28,7 @@
     
     defaultData = {};
 
-    data = deepClone(this.defaultData);
+    data = deepClone(defaultData);
 
     computed = {};
 

@@ -1,0 +1,83 @@
+@import './mixin.scss';
+
+/**
+圆
+**/
+.circle {
+  border-radius: 50%;
+}
+
+/**
+flex
+jc
+ai
+**/
+.f {
+  display: flex;
+}
+
+.f-c-c {
+  @include flexible(center, center);
+}
+
+.f-sb-c {
+  @include flexible(space-between, center);
+}
+
+.f-s-c {
+  @include flexible(flex-start, center);
+}
+
+.f-s-e {
+  @include flexible(flex-start, flex-end);
+}
+
+.f-s-s {
+  @include flexible(flex-start, flex-start);
+}
+
+.f-s-st {
+  @include flexible(flex-start, stretch);
+}
+
+.f-sb-s {
+  @include flexible(space-between, flex-start);
+}
+
+.f-sb-st {
+  @include flexible(space-between, stretch);
+}
+
+.f-c-st {
+  @include flexible(center, stretch)
+}
+
+.f-sa-c {
+  @include flexible(space-around, center);
+}
+
+.f-e-c {
+  @include flexible(flex-end, center);
+}
+
+.fc {
+  flex-direction: column;
+}
+
+.f1 {
+  flex: 1;
+}
+
+.fs {
+  flex-shrink: 0;
+}
+
+.ellipsis1 {
+  @include ellipsis(1); 
+  word-break: break-all; 
+}
+
+.ellipsis2 {
+  @include ellipsis(2);
+  word-break: break-all; 
+}
