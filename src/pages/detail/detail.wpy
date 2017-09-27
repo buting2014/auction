@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="scss" src="./detail.less">
 </style>
 
 <template lang="wxml">
@@ -8,6 +8,7 @@
 <script>
   import wepy from 'wepy';
   import deepClone from '../../utils/deep-clone';
+  import defaultData from './data.js';
   import pageBaseMixin from '../../mixins/page-base-mixin.js';
 
   export default class Detail extends wepy.page {
@@ -25,9 +26,7 @@
 
     mixins = [pageBaseMixin];
     
-    defaultData = {};
-
-    data = deepClone(this.defaultData);
+    data = deepClone(defaultData);
 
     computed = {};
 
