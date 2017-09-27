@@ -3,6 +3,10 @@
 
 <template lang="pug">
   view.detail
+    swiper(indicator-dots="true", autoplay="true", interval="5000", duration="1000")
+      block(wx:for="{{imgUrls}}")
+        swiper-item
+          image.slide-image(src="{{item}}")
 </template>
 
 <script>
@@ -13,7 +17,7 @@
 
   export default class Detail extends wepy.page {
     config = {
-      navigationBarTitleText: 'Detail',
+      navigationBarTitleText: '拍卖详情页',
       navigationBarTextStyle: 'black',//导航栏标题颜色，仅支持 black/white
       navigationBarBackgroundColor: '#fff', //导航栏背景颜色，如"#000000"
       backgroundColor: '#ffffff', //窗口的背景色
