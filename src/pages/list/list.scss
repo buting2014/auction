@@ -1,0 +1,21 @@
+@import '../../style/index.scss';
+.list {
+  height: 100%;
+  .tab-list {
+    height: 88rpx;
+    width: 100%;
+    background: $bg-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .text {
+      font-size: 28rpx;
+      color: #A7A7B1;
+      flex: 1;
+      text-align: center;
+      &.active{
+        color: $main-color;
+      }
+    }
+  }
+}

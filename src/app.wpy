@@ -16,8 +16,8 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
+			'pages/list/list',
       'pages/detail/detail',
-      'pages/index'
 			//path
     ],
     window: {

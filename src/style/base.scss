@@ -1,5 +1,5 @@
 @import './mixin.scss';
-
+@import './color.scss';
 /**
 圆
 **/
@@ -81,3 +81,17 @@ ai
   @include ellipsis(2);
   word-break: break-all; 
 }
+
+// 右侧箭头
+.arrow-r {
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 4rpx;
+  border-color: transparent;
+  border-style: solid;
+  border-top-color: $main-color;
+  border-left-color: $main-color;
+  transform: rotate(135deg);
+}
+$border: 1rpx solid rgba(224,224,225,0.4)

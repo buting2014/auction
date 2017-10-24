@@ -1,0 +1,73 @@
+<style lang="scss">
+  @import '../style/index.scss';
+  .auction-list {
+    width: 100%;
+    padding: 20rpx;
+    box-sizing: border-box;
+    .auction-item {
+      width: 100%;
+      height: 240rpx;
+      background: $bg-color;
+      display: flex;
+      margin-bottom: 20rpx;
+      .item-image {
+        height: 240rpx;
+        width: 240rpx;
+        display: inline-block;
+      }
+      .item-info {
+        flex-direction: column;
+        flex: 1;
+        margin-left: 20rpx;
+        height: 100%;
+        .name {
+          font-size: 40rpx;
+          color: $color-1;
+          margin-top: 20rpx;
+        }
+        .descript {
+          font-size: 24rpx;
+          color: rgba(36,37,61,0.50);
+        }
+        .join-num {
+          font-size: 20rpx;
+          color: $main-color;
+          margin-bottom: 20rpx;
+        }
+      }
+      .prize{
+        margin-top: 20rpx;
+        font-size: 40rpx;
+        margin-right: 24rpx;
+      }
+    }
+  }
+</style>
+
+<template lang="pug">
+  view.auction-list
+    repeat(for="{{auctionData}}", key="index", item="item")
+      view.auction-item.f-sb-s
+        image.item-image(src="{{item.image}}")
+        view.item-info.f-sb-s
+          view.name {{item.title}}
+          view.descript {{item.descript}}
+          view.join-num {{item.joinNum}}人参与
+        view.prize ￥{{item.prize}}
+</template>
+
+<script>
+  import wepy from 'wepy';
+
+  export default class AuctionList extends wepy.component {
+    props = {
+      auctionData: {
+        type: Object,
+        default: {}
+      }
+    }
+    data = {}
+    methods = {
+    }
+  }
+</script>

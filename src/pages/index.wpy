@@ -64,7 +64,7 @@
   import Counter from '../components/counter'
   import Group from '../components/group'
   import Toast from 'wepy-com-toast'
-  import testMixin from '../mixins/test'
+  // import testMixin from '../mixins/test'
 
   export default class Index extends wepy.page {
     config = {
@@ -79,7 +79,7 @@
       toast: Toast
     }
 
-    mixins = [testMixin]
+    // mixins = [testMixin]
 
     data = {
       mynum: 20,

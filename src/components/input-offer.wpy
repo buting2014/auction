@@ -1,0 +1,60 @@
+<style lang="scss">
+  @import '../style/index.scss';
+  .input-offer {
+    height: 120rpx;
+    .inner {
+      position: fixed;
+      bottom: 0;
+      height: 120rpx;
+      width: 100%;
+      box-sizing: border-box;
+      background: $sub-color;
+      padding: 20rpx;
+      display: flex;
+      .input-box {
+        height: 100%;
+        background: $bg-color;
+        border-radius: 10rpx;
+        margin-right: 20rpx;
+        box-sizing: border-box;
+        padding: 14rpx;
+        font-size: 28rpx;
+        flex: 1;
+      }
+      .button {
+        height: 100%;
+        background: rgba(253, 87, 57, 0.7);
+        font-size: 26rpx;
+        color: $sub-color;
+        width: 220rpx;
+        border-radius: 16rpx;
+        &.active {
+          background: $main-color;
+        }
+      }
+    }
+  }
+</style>
+
+<template lang="pug">
+  view.input-offer
+    view.inner.f
+      input.input-box(placeholder="当前价￥{{prizeNow}}")
+      view.button.f-c-c 出价
+</template>
+
+<script>
+  import wepy from 'wepy';
+
+  export default class InputOffer extends wepy.component {
+    props = {
+      prizeNow: {
+        type: Number,
+        default: 0
+      }
+    }
+    data = {}
+    methods = {
+    }
+  }
+</script>
