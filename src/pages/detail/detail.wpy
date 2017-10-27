@@ -3,10 +3,11 @@
 
 <template lang="pug">
   view.detail
-    swiper(indicator-dots="true", autoplay="true", interval="5000", duration="1000")
+    swiper.swiper(indicator-dots="true", autoplay="true", interval="5000", duration="1000")
       block(wx:for="{{imgUrls}}")
-        swiper-item
-          image.slide-image(src="{{item}}")
+        swiper-item.slide-image
+          image.image(src="{{item}}")
+    DetailHeader(title="iphone5+apple watch3,iphone5+apple wa")
 </template>
 
 <script>
@@ -14,6 +15,7 @@
   import deepClone from '../../utils/deep-clone';
   import pageBaseMixin from '../../mixins/page-base-mixin.js';
   import defaultData from './data.js';
+  import DetailHeader from '../../components/detail-header';
 
   export default class Detail extends wepy.page {
     config = {
@@ -26,7 +28,9 @@
       onReachBottomDistance: 50 // 页面上拉触底事件触发时距页面底部距离，单位为px
     }
 
-    components = {};
+    components = {
+      DetailHeader
+    };
 
     mixins = [pageBaseMixin];
     

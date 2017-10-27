@@ -43,8 +43,9 @@ gulp.task('com', function() {
 
   return gulp.src('./dev-template/com-template.wpy')
     .pipe(replace('Com', Case.pascal(name)))
+    .pipe(replace('comStyle', name))
     .pipe(rename({basename: name, extname: '.wpy'}))
-    .pipe(gulp.dest('./src/components/' + name));
+    .pipe(gulp.dest('./src/components/'));
 });
 
 // 生成页面文件
