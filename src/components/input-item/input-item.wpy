@@ -1,0 +1,67 @@
+<style lang="scss">
+  .input-com-wrap{
+    display:flex;
+    background: #F5F5F5;
+  }
+  .input-item {
+    width:100%;
+    height:92rpx;
+    line-height:92rpx;
+    background: #F5F5F5;
+    border-radius: 8rpx;
+    padding-left:10px;
+    box-sizing: border-box;
+  }
+  .input-clear{
+    width:68rpx;
+    height:92rpx;
+    text-align:center;
+    align-items:center;
+    display:flex;
+
+
+    & image{
+      width:14px;
+      height:14px;
+    }
+  }
+</style>
+
+<template lang="pug">
+  view.input-com-wrap 
+    input.input-item(placeholder="{{item.placeholder}}",type="{{item.type}}",@input="handleInput",@blur="handleBlur",value='{{item.value}}')
+    view.input-clear(
+      style="display:{{item.isShowP ? 'flex' : 'none' }}",
+      @tap.stop="handleClear"
+    )
+      image(src='../../images/input-clear.png')
+</template>
+
+<script>
+  import wepy from 'wepy';
+
+  export default class InputItem extends wepy.component {
+    props = {
+      item:{
+        placeholder:'',
+        type:'',
+        isShowP:false,
+        index:0,
+        value:null
+      }
+    }
+
+    methods = {
+      handleInput(e){
+        this.$emit('input', e, this.item.index);
+        console.log(e)
+      },
+      handleBlur(e){
+        this.$emit('blur',e,this.item.index)
+      },
+      handleClear(e){
+        this.$emit('clear',e,this.item.index)
+      }
+    }
+  }
+</script>

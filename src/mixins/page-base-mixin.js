@@ -18,4 +18,15 @@ export default class testMixin extends wepy.mixin {
   onLoad() {
     console.log('mixin onLoad')
   }
+  updateData(data = {}) {
+    this.staticUpdateData(data);
+
+    this.$apply();
+  }
+
+  staticUpdateData(data = {}) {
+    for (let key in data) {
+      this[key] = data[key];
+    }
+  }
 }

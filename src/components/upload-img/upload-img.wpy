@@ -1,0 +1,81 @@
+<style lang="scss">
+  .img-upload-wrap{
+    width:100%;
+  }
+  .img-upload{
+    display:inline-block;
+    border: 2px solid #CACACD;
+    border-radius: 16rpx;
+    width:210rpx;
+    height:210rpx;
+    box-sizing:border-box;
+    position:relative;
+    input{
+      width:100%;
+      height:100%;
+    }
+    &::after{
+      content:" ";
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-45rpx,-5rpx);
+      width:90rpx;
+      height:10rpx;
+      background: #CACACD;
+    }
+    &::before{
+      content:" ";
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-5rpx,-45rpx);
+      width:10rpx;
+      height:90rpx;
+      background: #CACACD;
+    }
+  }
+  .img-upload:nth-of-type(3n+2){
+    margin:0 10px;
+  }
+</style>
+
+<template lang="pug">
+  view.img-upload-wrap
+    view.img-upload
+      input(type="file",@tap='handleChooseImg')
+</template>
+
+<script>
+  import wepy from 'wepy';
+  import pageBaseMixin from '../../mixins/page-base-mixin.js';
+
+  export default class UploadeImg extends wepy.component {
+    props = {
+      item: {
+        type: Number,
+        default: 0
+      }
+    }
+    mixins = [pageBaseMixin];
+    data = {
+      tempFilePathsArr: []
+    }
+
+    methods = {
+      handleChooseImg(e){
+        wepy.chooseImage({
+          success: (res) =>  {
+            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+            let tempFilePaths = res.tempFilePaths;
+            this.data.tempFilePathsArr.push(tempFilePaths)
+            this.updateData({
+              tempFilePathsArr : this.data.tempFilePathsArr
+            })
+            console.log('上传的图片',this.data.tempFilePathsArr)
+          }
+        })
+      }
+    }
+  }
+</script>
