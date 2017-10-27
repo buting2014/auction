@@ -18,4 +18,21 @@
       }
     }
   }
+  .bottom-button {
+    height: 126rpx;
+    width: 100%;
+    background: $bg-color;
+    position: fixed;
+    bottom: 0;
+    .button {
+      width: 75%;
+      height: 112rpx;
+      line-height: 112rpx;
+      font-size: 34rpx;
+      color: $sub-color;
+      background: $main-color;
+      border-radius: 56rpx;
+      text-align: center;
+    }
+  }
 }

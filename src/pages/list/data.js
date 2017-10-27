@@ -9,14 +9,14 @@ let data = {
     title: 'Iphone5',
     descript: 'Iphone5特卖',
     joinNum: 8,
-    prize: '125'
+    price: '125'
   },
   {
     image: '/images/slide-temp.png',
     title: 'Iphone5',
     descript: 'Iphone5特卖',
     joinNum: 8,
-    prize: '125'
+    price: '125'
   }]
 };
 export default data;

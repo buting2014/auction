@@ -41,19 +41,35 @@
         margin-right: 24rpx;
       }
     }
+    .empty {
+      width: 100%;
+      height: 100%;
+      font-size: 26rpx;
+      color: $color-2;
+      flex-direction: column;
+      .empty-icon {
+        margin-top: 256rpx;
+        margin-bottom: 84rpx;
+        width: 160rpx;
+        height: 100rpx;
+      }
+    }
   }
 </style>
 
 <template lang="pug">
   view.auction-list
-    repeat(for="{{auctionData}}", key="index", item="item")
+    repeat(for="{{auctionData}}", key="index", item="item" ,wx-if="{{auctionData.length === 0}}")
       view.auction-item.f-sb-s
         image.item-image(src="{{item.image}}")
         view.item-info.f-sb-s
           view.name {{item.title}}
           view.descript {{item.descript}}
           view.join-num {{item.joinNum}}人参与
-        view.prize ￥{{item.prize}}
+        view.prize ￥{{item.price}}
+    view.empty.f-c-c(wx-else)
+      image.empty-icon(src="/images/icons/empty-icon.png")
+      | 暂时没有商品哦，点击下方按钮创建拍卖吧
 </template>
 
 <script>
@@ -62,8 +78,8 @@
   export default class AuctionList extends wepy.component {
     props = {
       auctionData: {
-        type: Object,
-        default: {}
+        type: Array,
+        default: []
       }
     }
     data = {}
