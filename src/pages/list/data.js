@@ -1,4 +1,5 @@
 let data = {
+  userInfo: {},
   headImg: '/images/head-temp.png',
   name: '远绵绵买哪买哪买哪',
   location: '北京市超睢阳区',

@@ -12,6 +12,7 @@
 <script>
 import wepy from 'wepy'
 import 'wepy-async-function'
+import * as api from './service/index'
 
 export default class extends wepy.app {
   config = {
@@ -38,18 +39,15 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
-    wx.login({
-      success: function(res) {
-        if (res.code) {
-          //发起网络请求
-          console.log(res)
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
+    this.getUserInfo(this.login) 
+  }
+  async login (user) {
+    await api.wxlogin(user).then((res)=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
     });
   }
-
   sleep (s) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {

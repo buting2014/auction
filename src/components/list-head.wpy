@@ -55,7 +55,7 @@
   view.list-head.f-s-c
     image.head-img(src="{{headImg}}")
     view.head-info.f-c-s
-      view.name.ellipsis1 {{name}}
+      view.name.ellipsis1 {{userInfo.nickName}}
       view.location.ellipsis1
         image.icon(src="/images/icons/location-icon.png")
         | {{location}}
@@ -70,6 +70,10 @@
 
   export default class ListHead extends wepy.component {
     props = {
+      userInfo: {
+        type: Object,
+        default: ''
+      },
       headImg: {
         type: String,
         default: ''
@@ -89,6 +93,8 @@
     }
     data = {}
     methods = {
+    }
+    onLoad () {
     }
   }
 </script>
