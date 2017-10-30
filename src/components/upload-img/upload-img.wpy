@@ -43,7 +43,7 @@
 <template lang="pug">
   view.img-upload-wrap
     view.img-upload
-      input(type="file",@tap='handleChooseImg')
+      input(type="file",@tap='handleImg')
 </template>
 
 <script>
@@ -60,22 +60,52 @@
     }
     mixins = [pageBaseMixin];
     data = {
-      tempFilePathsArr: []
+      // tempFilePathsArr: []
     }
 
     methods = {
-      handleChooseImg(e){
-        wepy.chooseImage({
-          success: (res) =>  {
-            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-            let tempFilePaths = res.tempFilePaths;
-            this.data.tempFilePathsArr.push(tempFilePaths)
-            this.updateData({
-              tempFilePathsArr : this.data.tempFilePathsArr
-            })
-            console.log('上传的图片',this.data.tempFilePathsArr)
-          }
-        })
+      // handleChooseImg(e){
+      //   wepy.chooseImage({
+      //     success: (res) =>  {
+      //       // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+      //       let tempFilePaths = res.tempFilePaths;
+      //       this.data.tempFilePathsArr.push(tempFilePaths)
+      //       this.updateData({
+      //         tempFilePathsArr : this.data.tempFilePathsArr
+      //       })
+      //       console.log('上传的图片',tempFilePaths[0])
+
+
+      //       if (tempFilePaths.length > 0){
+      //         // this.getToken().then((response)=>{
+      //           // this.setState({
+      //           //   token: response.token
+      //           // });
+      //           let pic;
+      //           Array.prototype.slice.call(tempFilePaths, 0).map(file => {
+      //             pic = file;
+      //           });
+      //           let formData = {
+      //             // 'key': this.state.key,
+      //             'Content-Type': 'application/octet-stream',
+      //             // 'token': this.state.token,
+      //             'file': pic
+      //           };
+      //           let submitform = new submitForm(formData);
+      //           console.log(formData)
+
+      //           // submitform.send('http://up-z2.qiniu.com', this.props.onChange);
+      //         // }).catch(function (error) {
+      //         //   console.log(error);
+      //         // });
+      //       }
+
+
+      //     }
+      //   })
+      // }
+      handleImg(e){
+        this.$emit('handleImg',e);
       }
     }
   }

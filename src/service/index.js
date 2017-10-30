@@ -78,6 +78,12 @@ export function getInfo () {
 export function getPriceRecord (id) {
   return request.get(`${apis.items}/${id}/pricerecord`);
 }
+export function saveItem (id) {
+  return request.post(`${apis.items}/save`);
+}
+export function createNewItem (id) {
+  return request.post(`${apis.items}/createnew`);
+}
 
 export function getWxConfig () {
   return request.get(`${apis.wechat}/sdkconfig`);
