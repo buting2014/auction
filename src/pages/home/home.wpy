@@ -34,11 +34,13 @@
 
 <script>
   import wepy from 'wepy';
+  import moment from 'moment';
   import deepClone from '../../utils/deep-clone';
   import pageBaseMixin from '../../mixins/page-base-mixin.js';
   import defaultData from './data.js';
   import UploadImg from '../../components/upload-img/upload-img';
   import InputItem from '../../components/input-item/input-item';
+  // import * as api from '../../service';
 
   export default class Home extends wepy.page {
     config = {
@@ -152,10 +154,68 @@
         console.log(123)
       },
       handlerSave(e){
-        console.log('hahhah',this.data)
+        console.log('hahhah',this.data,this.data.inputList);
+        let params = {
+          starting_price:this.data.inputList[1].value,
+          reserve_price:this.data.inputList[2].value,
+          ceiling_price:this.data.inputList[3].value,
+          item_name:this.data.inputList[0].value,
+          description:[{
+             type:'',
+             content:this.data.detailVal   
+          }]
+        }
+        console.log(JSON.stringify(params))
+        wepy.login({
+          success : res => {
+            if(res.code){
+              wepy.request({
+                url : `http://api.pivotal-china.com/api/items/save`,
+                method:'post',
+                data : JSON.stringify(params),
+                success:res => {
+                  console.log(res.data)
+                  wepy.redirectTo({url: '../detail/detail?id=' + res.data.result.id })
+                }
+              })
+            }else{
+              console.log('获取用户登录态失败！' + res.errMsg)
+            }
+          }
+        })
       },
       handlerPub(e){
-
+        let end_time = moment().add(this.data.auctionTimeIndex[0],'day').add(this.data.auctionTimeIndex[1],'hours').add(this.data.auctionTimeIndex[2],'minutes');
+        let params = {
+          starting_price:this.data.inputList[1].value,
+          reserve_price:this.data.inputList[2].value,
+          ceiling_price:this.data.inputList[3].value,
+          item_name:this.data.inputList[0].value,
+           description:[{
+             type:'',
+             content:this.data.detailVal   
+          }],
+          start_time:Date.parse(new Date()),
+          end_time:Date.parse(end_time),
+        }
+        console.log(params)
+        wepy.login({
+          success : res => {
+            if(res.code){
+              wepy.request({
+                url : `http://api.pivotal-china.com/api/items/createnew`,
+                method:'post',
+                data : JSON.stringify(params),
+                success:res => {
+                  console.log(res.data)
+                  // wepy.redirectTo({url: '../detail/detail?id=' + res.data.result.id })
+                }
+              })
+            }else{
+              console.log('获取用户登录态失败！' + res.errMsg)
+            }
+          }
+        })
       }
     };
 

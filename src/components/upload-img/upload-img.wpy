@@ -49,6 +49,7 @@
 <script>
   import wepy from 'wepy';
   import pageBaseMixin from '../../mixins/page-base-mixin.js';
+  import submitForm from '../../utils/submit-form.js';
 
   export default class UploadeImg extends wepy.component {
     props = {

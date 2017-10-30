@@ -1,5 +1,5 @@
 import request from './request.js';
-import apis from './url-config√.js';
+import apis from './url-config.js';
 
 export function wxlogin(data) {
   return request.get(`${apis.wxlogin}`, data);
