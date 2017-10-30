@@ -53,15 +53,15 @@
 
 <template lang="pug">
   view.list-head.f-s-c
-    image.head-img(src="{{headImg}}")
+    image.head-img(src="{{userInfo.avatarUrl}}")
     view.head-info.f-c-s
       view.name.ellipsis1 {{userInfo.nickName}}
       view.location.ellipsis1
         image.icon(src="/images/icons/location-icon.png")
-        | {{location}}
-      view.wxid.ellipsis1
+        | {{userInfo.province}}
+      view.wxid.ellipsis1(wx:if="{{userInfo.wxid}}")
         image.icon(src="/images/icons/email-icon.png")
-        | {{wxid}}
+        | {{userInfo.wxid}}
     image.head-qrcode(src="/images/icons/qrcode.png")
 </template>
 
@@ -72,23 +72,7 @@
     props = {
       userInfo: {
         type: Object,
-        default: ''
-      },
-      headImg: {
-        type: String,
-        default: ''
-      },
-      name: {
-        type: String,
-        default: ''
-      },
-      location: {
-        type: String,
-        default: ''
-      },
-      wxid: {
-        type: String,
-        default: ''
+        default: {}
       }
     }
     data = {}

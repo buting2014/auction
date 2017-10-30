@@ -3,11 +3,7 @@
 
 <template lang="pug">
   view.list
-    HeadContent(
-      :headImg.sync="userInfo.avatarUrl",
-      :name.sync="userInfo.nickName",
-      :location.sync="userInfo.province",
-      :wxid.sync="wxid")
+    HeadContent(:userInfo.sync="userInfo")
     view.tab-list
       repeat(for="{{tabList}}", key="index", item="item")
         view.text {{item}}
@@ -59,6 +55,7 @@
 
     async onLoad(params, data) {
       this.userInfo = await this.$parent.globalData.userInfo;
+      console.log(this.userInfo)
       // api.getItems(23, -1).then(result => {
       //   console.log(result)
       // }).catch(err => {
