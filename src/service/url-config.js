@@ -12,6 +12,7 @@ let createUrl = url => {
 let data = {
   wxlogin: createUrl('/auth/login'),
   createShop: createUrl('/api/shops'),
+  getInfo: createUrl('/api/users'),
   getToken: createUrl('/auth/getPicToken'),
   uploadPic: `http://up-z2.qiniu.com`,
   detailData: createUrl('detailData'),

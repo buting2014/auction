@@ -7,8 +7,18 @@ let methods = 'get delete head options post put patch';
 let request = {};
 methods.split(' ').forEach(method => {
   request[method] = (url, params) => new Promise((resolve, reject) => {
-    params.token = wept.getStorage('token');
-    params.id = wepy.getStorage('id');
+    wepy.getStorage({
+      key: 'token',
+      success: res => {
+        params.token = res.data;
+      }
+    });
+    wepy.getStorage({
+      key: 'id',
+      success: res => {
+        params.id = res.data;
+      }
+    });
     wepy.request({
       url: url, // 仅为示例，并非真实的接口地址
       data: params,
