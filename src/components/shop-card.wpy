@@ -1,0 +1,50 @@
+<style lang="scss">
+  @import '../style/index.scss';
+  .shop-card {
+    padding: 0 40rpx;
+    box-sizing: border-box;
+    font-size: 26rpx;
+    color: $color-1;
+    background-color: $sub-color;
+    .card-wrap {
+      border-bottom: $border;
+      height: 90rpx;
+      .shop-icon {
+        width: 40rpx;
+        height: 40rpx;
+        display: inline-block;
+        margin-right: 20rpx;
+      }
+      .more {
+        color: $main-color;
+      }
+    }
+  }
+</style>
+
+<template lang="pug">
+  view.shop-card
+    view.card-wrap.f-sb-c
+      view
+        image.shop-icon(src="/images/icons/shop-icon.png")
+        text {{shopName}}
+      view.more
+        | 更多拍卖
+        view.arrow-r
+</template>
+
+<script>
+  import wepy from 'wepy';
+
+  export default class ShopCard extends wepy.component {
+    props = {
+      shopName: {
+        type: String,
+        default: ''
+      }
+    }
+    data = {}
+    methods = {
+    }
+  }
+</script>

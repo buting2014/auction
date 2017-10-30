@@ -2,31 +2,116 @@
   @import '../style/index.scss';
   .detail-header {
     width: 100%;
-    box-sizing: border-box;
-    padding: 30rpx 40rpx;
-    .title {
-      font-size: 36rpx;
-      color: $color-1;
+    color: $color-1;
+    .top-nav {
+      padding: 30rpx 40rpx;
+      box-sizing: border-box;
+      .title {
+        font-size: 36rpx;
+        color: $color-1;
+        line-height: 50rpx;
+      }
+      .prize {
+        font-size: 28rpx;
+        .prize-num {
+          color: $main-color;
+          display: inline-block;
+          font-size: 34rpx;
+        }
+      }
+      .time {
+        font-size: 26rpx;
+        color: rgba(36,37,61,0.50);
+      }
     }
+    .detail-nav {
+      background: #FAFAFA;
+      width: 100%;
+      padding: 0 40rpx;
+      box-sizing: border-box;
+      .second-nav {
+       
+        font-size: 26rpx;
+        height: 90rpx;
+        .join-icon {
+          width: 36rpx;
+          height: 30rpx;
+          display: inline-block;
+          margin-right: 20rpx;
+        }
+        &:first-child {
+          border-bottom: 1rpx solid rgba(224,224,225,0.5);
+        }
+        .more {
+          color: $main-color;
+        }
+      }
+    }
+    
+    
   }
 </style>
 
 <template lang="pug">
   view.detail-header
-    view.title {{title}}
+    view.top-nav
+      view.title {{title}}
+      view.f-sb-c
+        view.prize 当前价：
+          view.prize-num ￥{{prizeNow}}
+        view.time 剩余时间：{{countDownTime}}
+    view.detail-nav
+      view.f-sb-c.second-nav
+        view 最高价￥{{maxPrize}}
+        view 加价幅度：每次￥{{addPrize}}
+      view.f-sb-c.second-nav
+        view
+          image.join-icon(src='/images/icons/detail-header-users.png')
+          text {{joinNum}}人参与
+        view.more 查看出价详情
+          view.arrow-r
 </template>
 
 <script>
   import wepy from 'wepy';
+  import CountDownMixin from '../mixins/count-down-mixin';
 
   export default class DetailHeader extends wepy.component {
+    mixins = [CountDownMixin]
+
     props = {
       title: {
         type: String,
         default: ''
+      },
+      prizeNow: {
+        type: [String, Number],
+        default: 0
+      },
+      endTime: {
+        type: [String],
+        default: '00:00:00'
+      },
+      maxPrize: {
+        type: [String, Number],
+        default: 0
+      },
+      addPrize: {
+        type: [String, Number],
+        default: 0
+      },
+      joinNum: {
+        type: [String, Number],
+        default: 0
       }
     }
-    data = {}
+    computed = {
+      startCountTime(){
+        this.initCountDown()
+      }
+    }
+    data = {
+    }
     methods = {
     }
   }

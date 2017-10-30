@@ -12,6 +12,7 @@
 <script>
 import wepy from 'wepy'
 import 'wepy-async-function'
+import * as api from './service/index'
 
 export default class extends wepy.app {
   config = {
@@ -19,6 +20,7 @@ export default class extends wepy.app {
       'pages/home/home',
       'pages/detail/detail',
       'pages/index',
+			'pages/list/list',
 			//path
     ],
     window: {
@@ -39,9 +41,23 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
-    this.testAsync()
+    this.getUserInfo(this.login) 
   }
-
+  async login (user) {
+    await api.wxlogin(user).then(res => {
+      console.log(res)
+      for (let key in res.result) {
+        if (object.hasOwnProperty(key)) {
+          wx.setStorage({
+            key: key,
+            data: res.result[key``]
+          })
+        }
+      }
+    }).catch(err=>{
+      console.log(err)
+    });
+  }
   sleep (s) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {

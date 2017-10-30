@@ -1,0 +1,38 @@
+@import '../../style/index.scss';
+.list {
+  height: 100%;
+  .tab-list {
+    height: 88rpx;
+    width: 100%;
+    background: $bg-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .text {
+      font-size: 28rpx;
+      color: #A7A7B1;
+      flex: 1;
+      text-align: center;
+      &.active{
+        color: $main-color;
+      }
+    }
+  }
+  .bottom-button {
+    height: 126rpx;
+    width: 100%;
+    background: $bg-color;
+    position: fixed;
+    bottom: 0;
+    .button {
+      width: 75%;
+      height: 112rpx;
+      line-height: 112rpx;
+      font-size: 34rpx;
+      color: $sub-color;
+      background: $main-color;
+      border-radius: 56rpx;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<style lang="scss">
+  @import '../style/index.scss';
+  .detail-content {
+    padding: 30rpx 40rpx;
+    box-sizing: border-box;
+    color: $color-1;
+    background: $sub-color;
+    .text {
+      font-size: 26rpx;
+      word-break: break-all;
+      word-wrap: break-word;
+      overflow: hidden;
+      margin-bottom: 20rpx;
+    }
+    .image {
+      width: 100%;
+    }
+    .rules {
+      font-size: 26rpx;
+      text-align: center;
+    }
+  }
+</style>
+
+<template lang="pug">
+  view.detail-content
+    repeat(for="{{detailData}}", key="index", item="item")
+      view.text(wx:if="{{item.type === 'text'}}")
+        | {{item.content}}
+      image.image(wx:else, src="{{item.content}}")
+    navigator.rules(url="/page/index") 点击查看拍卖规则>
+</template>
+
+<script>
+  import wepy from 'wepy';
+
+  export default class DetailContent extends wepy.component {
+    props = {
+      detailData: {
+        type: Array,
+        default: []
+      }
+    }
+    data = {}
+    methods = {
+    }
+    onLoad(){
+    }
+  }
+</script>

@@ -1,15 +1,16 @@
 /**
  * 地址统一管理
  */
-const DEV_DOMAIN = 'http://api.pivotal-china.com';
-const PROD_DOMAIN = 'http://api.pivotal-china.com';
+// const DEV_DOMAIN = 'http://api.pivotal-china.com';
+// const PROD_DOMAIN = 'http://api.pivotal-china.com';
 
 let createUrl = url => {
-  let domain = process.env.NODE_ENV === 'development' ? DEV_DOMAIN : PROD_DOMAIN;
-  return domain + url;
+  // let domain = process.env.NODE_ENV === 'development' ? DEV_DOMAIN : PROD_DOMAIN;
+  return `http://api.pivotal-china.com${url}`
 };
 
 let data = {
+  wxlogin: createUrl('/auth/login'),
   createShop: createUrl('/api/shops'),
   getToken: createUrl('/auth/getPicToken'),
   uploadPic: `http://up-z2.qiniu.com`,
