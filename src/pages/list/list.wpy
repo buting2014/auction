@@ -20,7 +20,7 @@
   import defaultData from './data.js';
   import HeadContent from '../../components/list-head';
   import AuctionList from '../../components/auction-list';
-  import api from '../../service/index.js';
+  import * as api from '../../service/index.js';
 
   export default class List extends wepy.page {
     config = {
@@ -54,20 +54,19 @@
     } // 预加载
 
     async onLoad(params, data) {
-      this.userInfo = await this.$parent.globalData.userInfo;
-      console.log(this.userInfo)
+      this.userInfo = this.$parent.globalData.userInfo;
       await api.getInfo().then(info => {
         if (info.shop_id) {
           this.shopId = info.shop_id
           this.qrcodeImg = info.qr_code
-          this.wxId= info.wx_id
+          this.wxId = info.wx_id
         }
       });
       await api.getItems(this.shopId, -1).then(result => {
-        console.log(result)
-      }).catch(err => {
-        console.log(err);
-      });
+          console.log(result)
+        }).catch(err => {
+          console.log(err);
+        });
      
     }	//Function	生命周期函数--监听页面加载
 

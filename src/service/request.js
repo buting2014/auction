@@ -7,13 +7,9 @@ let methods = 'get delete head options post put patch';
 let request = {};
 methods.split(' ').forEach(method => {
   request[method] = (url, params) => new Promise((resolve, reject) => {
-    if(!params) {
-      params = {}
-    }
-    console.log(params)
-    params.id = wepy.getStorageSync('id');
+    !params && (params = {});
     params.token = wepy.getStorageSync('token');
-    console.log(params, params.id)
+    params.id = wepy.getStorageSync('id');
     wepy.request({
       url: url, // 仅为示例，并非真实的接口地址
       data: params,
