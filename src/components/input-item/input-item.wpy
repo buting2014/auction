@@ -18,8 +18,7 @@
     text-align:center;
     align-items:center;
     display:flex;
-
-
+    
     & image{
       width:14px;
       height:14px;

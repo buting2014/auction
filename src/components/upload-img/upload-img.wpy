@@ -43,13 +43,13 @@
 <template lang="pug">
   view.img-upload-wrap
     view.img-upload
-      input(type="file",@tap='handleImg')
+      input(type="file",@tap="handleImg")
 </template>
 
 <script>
   import wepy from 'wepy';
   import pageBaseMixin from '../../mixins/page-base-mixin.js';
-  import submitForm from '../../utils/submit-form.js';
+  
 
   export default class UploadeImg extends wepy.component {
     props = {

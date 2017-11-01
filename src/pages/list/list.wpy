@@ -60,7 +60,7 @@
         if (info.shop_id) {
           this.shopId = info.shop_id
           this.qrcodeImg = info.qr_code
-          this.wxId: info.wx_id,
+          this.wxId= info.wx_id
         }
       });
       await api.getItems(this.shopId, -1).then(result => {

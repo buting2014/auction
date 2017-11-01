@@ -47,10 +47,10 @@ export default class extends wepy.app {
     await api.wxlogin(user).then(res => {
       console.log(res)
       for (let key in res.result) {
-        if (object.hasOwnProperty(key)) {
+        if (res.result.hasOwnProperty(key)) {
           wx.setStorage({
             key: key,
-            data: res.result[key``]
+            data: res.result[key]
           })
         }
       }

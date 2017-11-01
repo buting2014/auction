@@ -78,11 +78,11 @@ export function getInfo () {
 export function getPriceRecord (id) {
   return request.get(`${apis.items}/${id}/pricerecord`);
 }
-export function saveItem (id) {
-  return request.post(`${apis.items}/save`);
+export function saveItem (params) {
+  return request.post(`${apis.items}/save`, params);
 }
-export function createNewItem (id) {
-  return request.post(`${apis.items}/createnew`);
+export function createNewItem (params) {
+  return request.post(`${apis.items}/createnew`,params);
 }
 
 export function getWxConfig () {

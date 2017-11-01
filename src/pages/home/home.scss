@@ -17,6 +17,16 @@
   color: #24253D;
   padding:36rpx 0 38rpx 0;
 }
+.del-img{
+  border-radius:16rpx;
+  width:210rpx;
+  height:210rpx;
+  box-sizing:border-box;
+  display: inline-block;
+}
+.del-img:nth-of-type(3n+2){
+    margin:0 10px;
+  }
 .time-wrap{
   display: flex;
   opacity: 0.5;

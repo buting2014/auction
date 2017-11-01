@@ -6,6 +6,8 @@
     view.top-title 创建拍卖
     view
       view.sub-title 商品图片
+      repeat(for="{{detailImg}}",index="index",item="item",key="key")
+        image.del-img(src="{{item}}")
       uploadImg(
         @handleImg.user="handleChooseImg"
       )
@@ -68,6 +70,7 @@
     // data = deepClone(defaultData);
 
     data={
+      detailImg : [],
       tempFilePathsArr: [],
       auctionTimeIndex: [0,0,0],
       auctionTimeArr: [[],[],[]],
@@ -118,41 +121,51 @@
 
     methods = {
       handleChooseImg(e){
+        let that = this;
         wepy.chooseImage({
           success: (res) =>  {
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-            let tempFilePaths = res.tempFilePaths;
-            this.data.tempFilePathsArr.push(tempFilePaths)
-            this.updateData({
-              tempFilePathsArr : this.data.tempFilePathsArr
+            let tempFilePaths = res.tempFilePaths
+            wepy.uploadFile({
+              url: 'https://mediaapi.daily.weidian.com/upload/v2/direct?scope=koudai&fileType=image', //仅为示例，非真实的接口地址
+              filePath: tempFilePaths[0],
+              name: 'file',
+              header: {
+                origin: "127.0.0.1"
+              },
+              formData:{
+                "uploadId":Date.parse(new Date()),
+                "file": tempFilePaths[0]
+              },
+              success: function(ress){
+                let data;
+                //do something
+                // console.log(data.result.url)
+                console.log(ress.data)
+                if( typeof ress.data === 'string' ){
+                  try{
+                    data = JSON.parse(ress.data);
+                  }catch(err){
+                    wepy.showToast({
+                      title:'格式有误',
+                      mask:true,
+                      duration:1000
+                    })
+                  }
+                }else{
+                  data = ress.data;
+                }
+                // console.log(data)
+                let img;
+                if(data.status.code == '200'){
+                  img = 'https:' + data.result.url;
+                  that.updateData({
+                    detailImg : that.data.detailImg.concat(img)
+                  })
+                }
+                // console.log(that.data.detailImg)
+              }
             })
-            console.log('上传的图片',tempFilePaths[0])
-
-
-            if (tempFilePaths.length > 0){
-              // this.getToken().then((response)=>{
-                // this.setState({
-                //   token: response.token
-                // });
-                let pic;
-                Array.prototype.slice.call(tempFilePaths, 0).map(file => {
-                  pic = file;
-                });
-                let formData = {
-                  // 'key': this.state.key,
-                  'Content-Type': 'application/octet-stream',
-                  // 'token': this.state.token,
-                  'file': pic
-                };
-                let submitform = new submitForm(formData);
-                console.log(formData)
-
-                // submitform.send('http://up-z2.qiniu.com', this.props.onChange);
-              // }).catch(function (error) {
-              //   console.log(error);
-              // });
-            }
-
 
           }
         })
@@ -199,32 +212,26 @@
       },
       handlerSave(e){
         console.log('hahhah',this.data,this.data.inputList);
+        let end_time = moment().add(this.data.auctionTimeIndex[0],'day').add(this.data.auctionTimeIndex[1],'hours').add(this.data.auctionTimeIndex[2],'minutes');
         let params = {
-          starting_price:this.data.inputList[1].value,
-          reserve_price:this.data.inputList[2].value,
-          ceiling_price:this.data.inputList[3].value,
-          item_name:this.data.inputList[0].value,
+          starting_price:this.data.inputList[1].value ? this.data.inputList[1].value : 0,
+          reserve_price:this.data.inputList[2].value ? this.data.inputList[2].value : 0,
+          ceiling_price:this.data.inputList[3].value ? this.data.inputList[3].value : 0,
+          item_name:this.data.inputList[0].value ? this.data.inputList[0].value : 0,
           description:[{
-             type:'',
+             type:this.data.detailImg,
              content:this.data.detailVal   
-          }]
+          }],
+          start_time:moment(new Date()).valueOf(),
+          end_time:end_time ? moment(end_time).valueOf() : 0
         }
-        console.log(JSON.stringify(params))
+        console.log(new Date(),Date.parse(new Date()))
         wepy.login({
           success : res => {
             if(res.code){
-              // wepy.request({
-              //   url : `http://api.pivotal-china.com/api/items/save`,
-              //   method:'post',
-              //   data : JSON.stringify(params),
-              //   success:res => {
-              //     console.log(res.data)
-              //     wepy.redirectTo({url: '../list/list?id=' + res.data.result.id })
-              //   }
-              // })
               api.saveItem(params).then(response=>{
-                console.log(response.data)
-                // wepy.redirectTo({url: '../list/list?id=' + res.data.result.id })
+                console.log(response.result.description)
+                // wepy.redirectTo({url: '../list/list'})
               })
             }else{
               console.log('获取用户登录态失败！' + res.errMsg)
@@ -235,33 +242,24 @@
       handlerPub(e){
         let end_time = moment().add(this.data.auctionTimeIndex[0],'day').add(this.data.auctionTimeIndex[1],'hours').add(this.data.auctionTimeIndex[2],'minutes');
         let params = {
-          starting_price:this.data.inputList[1].value,
-          reserve_price:this.data.inputList[2].value,
-          ceiling_price:this.data.inputList[3].value,
-          item_name:this.data.inputList[0].value,
-           description:[{
-             type:'',
+          starting_price:this.data.inputList[1].value ? this.data.inputList[1].value : 0,
+          reserve_price:this.data.inputList[2].value ? this.data.inputList[2].value : 0,
+          ceiling_price:this.data.inputList[3].value ? this.data.inputList[3].value : 0,
+          item_name:this.data.inputList[0].value ? this.data.inputList[0].value : 0,
+          description:[{
+             type:this.data.detailImg,
              content:this.data.detailVal   
           }],
-          start_time:Date.parse(new Date()),
-          end_time:Date.parse(end_time),
+          start_time:moment(new Date()).valueOf(),
+          end_time:end_time ? moment(end_time).valueOf() : 0
         }
         console.log(params)
         wepy.login({
           success : res => {
             if(res.code){
-              // wepy.request({
-              //   url : `http://api.pivotal-china.com/api/items/createnew`,
-              //   method:'post',
-              //   data : JSON.stringify(params),
-              //   success:res => {
-              //     console.log(res.data)
-              //     // wepy.redirectTo({url: '../list/list?id=' + res.data.result.id })
-              //   }
-              // })
-              api.saveItem(params).then(response=>{
-                console.log(response.data)
-                // wepy.redirectTo({url: '../list/list?id=' + res.data.result.id })
+              api.createNewItem(params).then(response=>{
+                console.log(response.result)
+                wepy.redirectTo({url: '../list/list'})
               })
             }else{
               console.log('获取用户登录态失败！' + res.errMsg)
