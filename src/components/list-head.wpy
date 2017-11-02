@@ -53,15 +53,15 @@
 
 <template lang="pug">
   view.list-head.f-s-c
-    image.head-img(src="{{userInfo.avatarUrl}}")
+    image.head-img(src="{{avatarUrl}}")
     view.head-info.f-c-s
-      view.name.ellipsis1 {{userInfo.nickName}}
+      view.name.ellipsis1 {{nickName}}
       view.location.ellipsis1
         image.icon(src="/images/icons/location-icon.png")
-        | {{userInfo.province}}
-      view.wxid.ellipsis1(wx:if="{{userInfo.wxid}}")
+        | {{province}}
+      view.wxid.ellipsis1(wx:if="{{wxid}}")
         image.icon(src="/images/icons/email-icon.png")
-        | {{userInfo.wxid}}
+        | {{wxid}}
     image.head-qrcode(src="/images/icons/qrcode.png")
 </template>
 
@@ -75,7 +75,11 @@
         default: {}
       }
     }
-    data = {}
+    data = {
+      avatarUrl: wepy.getStorageSync('avatarUrl'),
+      nickName: wepy.getStorageSync('nickName'),
+      province: wepy.getStorageSync('province')
+    }
     methods = {
     }
     onLoad () {

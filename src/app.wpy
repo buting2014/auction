@@ -10,9 +10,12 @@
 </style>
 
 <script>
-import wepy from 'wepy'
-import 'wepy-async-function'
-import * as api from './service/index'
+import wepy from 'wepy';
+import 'wepy-async-function';
+import * as api from './service/index';
+import wxlogin from './utils/login';
+const APPID = "wx1036b255a83c452a";
+const APPSECRET = "a014c29008246d6418932ed6a40f4e0e";
 
 export default class extends wepy.app {
   config = {
@@ -32,7 +35,8 @@ export default class extends wepy.app {
   }
 
   globalData = {
-    userInfo: null
+    userInfo: {},
+    ifLogin: false
   }
 
   constructor () {
@@ -41,46 +45,6 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
-    this.getUserInfo(this.login) 
-  }
-  async login (user) {
-    await api.wxlogin(user).then(res => {
-      for (let key in res.result) {
-        if (res.result.hasOwnProperty(key)) {
-          wx.setStorage({
-            key: key,
-            data: res.result[key]
-          })
-        }
-      }
-    }).catch(err=>{
-      console.log(err)
-    });
-  }
-  sleep (s) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('promise resolved')
-      }, s * 1000)
-    })
-  }
-
-  async testAsync () {
-    const data = await this.sleep(3)
-    console.log(data)
-  }
-
-  getUserInfo(cb) {
-    const that = this
-    if (this.globalData.userInfo) {
-      return this.globalData.userInfo
-    }
-    wepy.getUserInfo({
-      success (res) {
-        that.globalData.userInfo = res.userInfo
-        cb && cb(res.userInfo)
-      }
-    })
   }
 }
 </script>
