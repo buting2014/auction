@@ -24,10 +24,9 @@
 
 <template lang="pug">
   view.detail-content
-    repeat(for="{{detailData}}", key="index", item="item")
-      view.text(wx:if="{{item.type === 'text'}}")
-        | {{item.content}}
-      image.image(wx:else, src="{{item.content}}")
+    view.text {{detailData.content}}
+    repeat(for="{{detailData.type}}",index="index",item="item",key="key")
+      image.image(src="{{item}}")
     navigator.rules(url="/page/index") 点击查看拍卖规则>
 </template>
 
@@ -37,14 +36,18 @@
   export default class DetailContent extends wepy.component {
     props = {
       detailData: {
-        type: Array,
-        default: []
+        type: Object,
+        default: {
+          content:'',
+          type:[]
+        }
       }
     }
     data = {}
     methods = {
     }
     onLoad(){
+
     }
   }
 </script>

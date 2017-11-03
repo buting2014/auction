@@ -5,11 +5,11 @@ import wepy from 'wepy';
 import wxlogin from '../utils/login';
 let methods = 'get delete head options post put patch';
 let request = {};
-
 methods.split(' ').forEach(method => {
   request[method] = (url, params) => new Promise((resolve, reject) => {
     !params && (params = {});
-    if (!wepy.getStorageSync('ifLogin')) {
+    wepy.setStorageSync('ifLogin', false)
+    if (!wepy.getStorageSync('ifLogin')) {   
       wxlogin(() => {
         params.token = wepy.getStorageSync('token');
         params.id = wepy.getStorageSync('user_id');

@@ -7,16 +7,16 @@
     view.tab-list
       repeat(for="{{tabList}}", key="index", item="item")
         view.text(class="{{activeTab == item && 'active'}}", @tap="changeTab({{item}}, {{index}})") {{item}}
-    AuctionList(:auctionData.sync="")
+    AuctionList(:auctionData.sync="auctionData")
     //- AuctionList(:auctionData.sync="auctionData")
-    view.bottom-button.f-c-c
+    view.bottom-button.f-c-c(wx:if="{{auctionData.length <= 0}}")
       view.button 创建拍卖
 </template>
  
 <script>
   import wepy from 'wepy';
   import deepClone from '../../utils/deep-clone';
-  // import pageBaseMixin from '../../mixins/page-base-mixin.js';
+  import pageBaseMixin from '../../mixins/page-base-mixin.js';
   import defaultData from './data.js';
   import HeadContent from '../../components/list-head';
   import AuctionList from '../../components/auction-list';
@@ -38,7 +38,7 @@
       AuctionList
     };
 
-    // mixins = [pageBaseMixin];
+    mixins = [pageBaseMixin];
     data = deepClone(defaultData);
 
     computed = {};
@@ -49,7 +49,10 @@
       changeTab (item, index) {
         this.activeTab = item;
         let shopId = wepy.getStorageSync('id');
-        api.getItems(shopId, index--).then(result => {
+        api.getItems('5779000000021001', index--).then(result => {
+          this.updateData({
+            auctionData: result
+          })
           console.log(result)
         }).catch(err => {
           console.log(err);
@@ -67,8 +70,11 @@
 
     async onLoad(params, data) {
       let shopId = wepy.getStorageSync('id');
-      api.getItems(shopId).then(result => {
-        this.auctionData = result;
+      api.getItems('5779000000021001').then(result => {
+        this.updateData({
+          auctionData: result
+        })
+        console.log(this.auctionData)
       }).catch(err => {
         console.log(err);
       });

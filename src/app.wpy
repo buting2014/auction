@@ -20,10 +20,10 @@ const APPSECRET = "a014c29008246d6418932ed6a40f4e0e";
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/home/home',
       'pages/detail/detail',
+      'pages/list/list',
+      'pages/home/home',
       'pages/index',
-			'pages/list/list',
 			//path
     ],
     window: {

@@ -59,15 +59,15 @@
 
 <template lang="pug">
   view.auction-list
-    repeat(for="{{auctionData}}", key="index", item="item" ,wx-if="{{auctionData.length === 0}}")
-      view.auction-item.f-sb-s
-        image.item-image(src="{{item.image}}")
+    repeat(for="{{auctionData}}", key="index", item="item" ,wx:if="{{auctionData.length > 0}}")
+      view.auction-item.f-sb-s(@tap="handlerTapDetail({{item.id}})")
+        image.item-image(src="{{item.head_img}}")
         view.item-info.f-sb-s
           view.name {{item.title}}
-          view.descript {{item.descript}}
+          view.descript {{item.final_price}}
           view.join-num {{item.joinNum}}人参与
         view.prize ￥{{item.price}}
-    view.empty.f-c-c(wx-else)
+    view.empty.f-c-c(wx:if="{{auctionData.length <= 0}}")
       image.empty-icon(src="/images/icons/empty-icon.png")
       | 暂时没有商品哦，点击下方按钮创建拍卖吧
 </template>
@@ -84,6 +84,10 @@
     }
     data = {}
     methods = {
+      handlerTapDetail(id,e){
+        wepy.redirectTo({url: '../detail/detail?itemid='+ id})
+        console.log(id,e)
+      }
     }
   }
 </script>
