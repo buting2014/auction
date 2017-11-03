@@ -34,7 +34,7 @@ export function getShopInfo (id) {
   return request.get(`${apis.shops}/${id}`);
 }
 
-export function getItems (id, status = 1, page = 1, per_page = 10) {
+export function getItems (id, status = 1, page = 1, per_page = 20) {
   let data = {
     status,
     page,

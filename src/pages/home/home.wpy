@@ -115,7 +115,8 @@
       longDiff : 0,
       day:0,
       hour:0,
-      minute:0
+      minute:0,
+      itemid:''
     }
 
     computed = {};
@@ -215,7 +216,16 @@
         })
       },
       handlerPre(e){
-        console.log(123)
+        console.log(123,this.data.itemid);
+        if(this.data.itemid != ""){
+          wepy.redirectTo({url: '../detail/detail?itemid='+ this.data.itemid})
+        }else{
+          wepy.showToast({
+            title:'请先保存或发布',
+            mask:true,
+            duration:1000
+          })
+        }
       },
       handlerSave(e){
         console.log('hahhah',this.data,this.data.inputList);
@@ -243,8 +253,11 @@
           success : res => {
             if(res.code){
               api.saveItem(params).then(response=>{
-                console.log(response.result.description)
-                // wepy.redirectTo({url: '../list/list'})
+                console.log(response.result.description);
+                this.updateData({
+                  itemid: response.result.id
+                })
+                wepy.redirectTo({url: '../list/list'})
               })
             }else{
               console.log('获取用户登录态失败！' + res.errMsg)
@@ -278,7 +291,10 @@
             if(res.code){
               api.createNewItem(params).then(result=>{
                 console.log(result)
-                wepy.redirectTo({url: '../list/list'})
+                this.updateData({
+                  itemid: response.result.id
+                })
+                wepy.redirectTo({url: '../list/list'});
               })
             }else{
               console.log('获取用户登录态失败！' + res.errMsg)
@@ -308,7 +324,7 @@
       let auctionTimeOpt = this.data.auctionTimeIndex;
       this.data.isTimeShow = (auctionTimeOpt[0] || auctionTimeOpt[1] || auctionTimeOpt[2]) ? true : false;
       console.log( auctionTimeOpt[0] || auctionTimeOpt[1] || auctionTimeOpt[2] , (auctionTimeOpt[0] || auctionTimeOpt[1] || auctionTimeOpt[2]) ? true : false  );
-      api.getItemDetails('57dea88769c21000').then( result => {
+      api.getItemDetails(params.itemid).then( result => {
         console.log(result);
         let resu = result;
         let longTime = resu.end_time - resu.start_time;

@@ -8,8 +8,7 @@
       repeat(for="{{tabList}}", key="index", item="item")
         view.text(class="{{activeTab == item && 'active'}}", @tap="changeTab({{item}}, {{index}})") {{item}}
     AuctionList(:auctionData.sync="auctionData")
-    //- AuctionList(:auctionData.sync="auctionData")
-    view.bottom-button.f-c-c(wx:if="{{auctionData.length <= 0}}")
+    view.bottom-button.f-c-c(@tap="handlerPublish")
       view.button 创建拍卖
 </template>
  
@@ -57,6 +56,9 @@
         }).catch(err => {
           console.log(err);
         });
+      },
+      handlerPublish(){
+        wepy.redirectTo({url: '../home/home'})
       }
     };
 
@@ -70,7 +72,7 @@
 
     async onLoad(params, data) {
       let shopId = wepy.getStorageSync('id');
-      api.getItems('5779000000021001').then(result => {
+      api.getItems('5779000000021001','-1').then(result => {
         this.updateData({
           auctionData: result
         })

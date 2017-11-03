@@ -2,7 +2,7 @@
   @import '../style/index.scss';
   .auction-list {
     width: 100%;
-    padding: 20rpx;
+    padding: 20rpx 20rpx 126rpx;
     box-sizing: border-box;
     .auction-item {
       width: 100%;
@@ -61,13 +61,14 @@
   view.auction-list
     repeat(for="{{auctionData}}", key="index", item="item" ,wx:if="{{auctionData.length > 0}}")
       view.auction-item.f-sb-s(@tap="handlerTapDetail({{item.id}})")
-        image.item-image(src="{{item.head_img}}")
+        view(wx:if="{{item.description[0].type.length > 0}}")
+          image.item-image(src="{{item.description[0].type[0]}}")
         view.item-info.f-sb-s
           view.name {{item.title}}
           view.descript {{item.final_price}}
           view.join-num {{item.joinNum}}人参与
         view.prize ￥{{item.price}}
-    view.empty.f-c-c(wx:if="{{auctionData.length <= 0}}")
+    view.empty.f-c-c(wx:if="{{auctionData.length == 0}}")
       image.empty-icon(src="/images/icons/empty-icon.png")
       | 暂时没有商品哦，点击下方按钮创建拍卖吧
 </template>
