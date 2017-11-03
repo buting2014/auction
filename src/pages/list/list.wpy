@@ -71,13 +71,8 @@
     } // 预加载
 
     async onLoad(params, data) {
-<<<<<<< Updated upstream
-      let shopId = wepy.getStorageSync('id');
-      api.getItems('5779000000021001','-1').then(result => {
-=======
       let shopId = wepy.getStorageSync('shopId');
       api.getItems(shopId).then(result => {
->>>>>>> Stashed changes
         this.updateData({
           auctionData: result
         })

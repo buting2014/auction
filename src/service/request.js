@@ -8,7 +8,6 @@ let request = {};
 methods.split(' ').forEach(method => {
   request[method] = (url, params) => new Promise((resolve, reject) => {
     !params && (params = {});
-    wepy.setStorageSync('ifLogin', false)
     if (!wepy.getStorageSync('ifLogin')) {
       wxlogin(() => {
         params.token = wepy.getStorageSync('token');
