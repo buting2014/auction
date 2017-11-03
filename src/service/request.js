@@ -9,10 +9,10 @@ methods.split(' ').forEach(method => {
   request[method] = (url, params) => new Promise((resolve, reject) => {
     !params && (params = {});
     wepy.setStorageSync('ifLogin', false)
-    if (!wepy.getStorageSync('ifLogin')) {   
+    if (!wepy.getStorageSync('ifLogin')) {
       wxlogin(() => {
         params.token = wepy.getStorageSync('token');
-        params.id = wepy.getStorageSync('user_id');
+        params.id = wepy.getStorageSync('userId');
         wepy.request({
           url: url, // 仅为示例，并非真实的接口地址
           data: params,

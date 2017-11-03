@@ -8,7 +8,7 @@
       repeat(for="{{tabList}}", key="index", item="item")
         view.text(class="{{activeTab == item && 'active'}}", @tap="changeTab({{item}}, {{index}})") {{item}}
     AuctionList(:auctionData.sync="auctionData")
-    view.bottom-button.f-c-c(@tap="handlerPublish")
+    navigator.bottom-button.f-c-c(url="/pages/home/home")
       view.button 创建拍卖
 </template>
  
@@ -47,8 +47,8 @@
     methods = {
       changeTab (item, index) {
         this.activeTab = item;
-        let shopId = wepy.getStorageSync('id');
-        api.getItems('5779000000021001', index--).then(result => {
+        let shopId = wepy.getStorageSync('shopId');
+        api.getItems(shopId, index--).then(result => {
           this.updateData({
             auctionData: result
           })
@@ -71,8 +71,13 @@
     } // 预加载
 
     async onLoad(params, data) {
+<<<<<<< Updated upstream
       let shopId = wepy.getStorageSync('id');
       api.getItems('5779000000021001','-1').then(result => {
+=======
+      let shopId = wepy.getStorageSync('shopId');
+      api.getItems(shopId).then(result => {
+>>>>>>> Stashed changes
         this.updateData({
           auctionData: result
         })

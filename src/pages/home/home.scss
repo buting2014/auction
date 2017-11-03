@@ -6,14 +6,14 @@
   position:relative;
 }
 .top-title{
-  font-size: 28px;
-  line-height: 28px;
+  font-size: 56rpx;
+  line-height: 56rpx;
   color: #24253D;
   padding-bottom: 32rpx;
 }
 .sub-title{
-  font-size: 17px;
-  line-height:17px;
+  font-size: 34rpx;
+  line-height:34rpx;
   color: #24253D;
   padding:36rpx 0 38rpx 0;
 }
@@ -30,7 +30,7 @@
 .time-wrap{
   display: flex;
   opacity: 0.5;
-  font-size: 17px;
+  font-size: 34rpx;
   color: #24253D;
 }
 .date-time-wrap,.long-time-wrap{
@@ -66,7 +66,7 @@
   border-radius: 8px;
   padding:10px;
   opacity: 0.5;
-  font-size: 17px;
+  font-size: 34rpx;
   color: #24253D;
   box-sizing: border-box;
 }
@@ -79,7 +79,7 @@
 	box-sizing: border-box;
 	background: #F5F5F5;	
 	display:flex;
-	font-size: 13px;
+	font-size: 26rpx;
 	text-align:center;
   z-index:10;
 	.home-pre{
@@ -90,7 +90,7 @@
 		color: #8C8D99;
 		line-height: 40px;
     padding:0;
-    font-size: 13px;
+    font-size: 26rpx;
 	}
 	.home-save{
 		margin: 0 20rpx;
@@ -101,7 +101,7 @@
 		color: #8C8D99;
 		line-height: 40px;
     padding:0;
-    font-size: 13px;
+    font-size: 26rpx;
 	}
 	.home-pub{
 		width: 350rpx;
@@ -110,6 +110,6 @@
 		color: #fff;
 		line-height: 40px;
     padding:0;
-    font-size: 13px;
+    font-size: 26rpx;
 	}
 }

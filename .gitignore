@@ -4,3 +4,4 @@ dist
 src/test-img
 package-lock.json
 npm-debug.log.*
+npm-debug.log

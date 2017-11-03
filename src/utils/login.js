@@ -17,6 +17,7 @@ let wxlogin = (cb) => {
             grant_type: 'authorization_code'
           },
           success: res => {
+            wepy.setStorageSync('openid', res.data.openid);
             getUserInfo(login);
           }
         })
@@ -39,14 +40,15 @@ let getUserInfo = (cb) => {
   })
 };
 let login = (user) => {
+  user = Object.assign(user, {openid: wepy.getStorageSync('openid')});
   wepy.request({
     url: 'http://api.pivotal-china.com/auth/login',
     data: user,
     success: res => {
       let result = res.data.result;
-      for (let key in result) {
-        wepy.setStorageSync(key, result[key])
-      }
+      wepy.setStorageSync('shopId', result.id);
+      wepy.setStorageSync('userId', result.user_id);
+      wepy.setStorageSync('token', result.token);
       wxloginCb();
     },
     fail: err => {

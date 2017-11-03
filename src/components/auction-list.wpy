@@ -68,7 +68,7 @@
           view.descript {{item.final_price}}
           view.join-num {{item.joinNum}}人参与
         view.prize ￥{{item.price}}
-    view.empty.f-c-c(wx:if="{{auctionData.length == 0}}")
+    view.empty.f-c-c
       image.empty-icon(src="/images/icons/empty-icon.png")
       | 暂时没有商品哦，点击下方按钮创建拍卖吧
 </template>
