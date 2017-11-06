@@ -59,7 +59,7 @@
 
     onLoad(params, data ) {
       let userId = wepy.getStorageSync('userId');
-      api.getItemDetails(userId).then(result=>{
+      api.getItemDetails(params.itemid).then(result=>{
         this.updateData({
           // detailData: result,
           item_name: result.item_name,

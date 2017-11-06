@@ -72,7 +72,7 @@
 
     async onLoad(params, data) {
       let shopId = wepy.getStorageSync('shopId');
-      api.getItems(shopId).then(result => {
+      api.getItems(shopId,0).then(result => {
         this.updateData({
           auctionData: result
         })

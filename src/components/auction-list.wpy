@@ -86,8 +86,8 @@
     data = {}
     methods = {
       handlerTapDetail(id,e){
-        wepy.redirectTo({url: '../detail/detail?itemid='+ id})
         console.log(id,e)
+        wepy.redirectTo({url: '../detail/detail?itemid='+ id})
       }
     }
   }

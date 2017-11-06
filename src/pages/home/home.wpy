@@ -307,41 +307,44 @@
       let auctionTimeOpt = this.data.auctionTimeIndex;
       this.data.isTimeShow = (auctionTimeOpt[0] || auctionTimeOpt[1] || auctionTimeOpt[2]) ? true : false;
       console.log( auctionTimeOpt[0] || auctionTimeOpt[1] || auctionTimeOpt[2] , (auctionTimeOpt[0] || auctionTimeOpt[1] || auctionTimeOpt[2]) ? true : false  );
-      api.getItemDetails(params.itemid).then( result => {
-        console.log(result);
-        let resu = result;
-        let longTime = resu.end_time - resu.start_time;
-        let startTime = resu.start_time - resu.create_time;
-        let days=parseInt(startTime/(24*3600*1000))   
-        let leave1=startTime%(24*3600*1000);    
-        let hours=parseInt(leave1/(3600*1000));   
-        let leave2=leave1%(3600*1000);       
-        let minutes=parseInt(leave2/(60*1000)); 
+      console.log(params.itemid,'params.itemid')
+      if(!params.itemid){
+        api.getItemDetails(params.itemid).then( result => {
+          console.log(result);
+          let resu = result;
+          let longTime = resu.end_time - resu.start_time;
+          let startTime = resu.start_time - resu.create_time;
+          let days=parseInt(startTime/(24*3600*1000))   
+          let leave1=startTime%(24*3600*1000);    
+          let hours=parseInt(leave1/(3600*1000));   
+          let leave2=leave1%(3600*1000);       
+          let minutes=parseInt(leave2/(60*1000)); 
 
-        // this.data.auctionTimeIndex[0] = days;
-        // this.data.auctionTimeIndex[1] = hours;
-        // this.data.auctionTimeIndex[2] = minutes;
+          // this.data.auctionTimeIndex[0] = days;
+          // this.data.auctionTimeIndex[1] = hours;
+          // this.data.auctionTimeIndex[2] = minutes;
 
-        this.data.inputList[0].value = resu.item_name
-        this.data.inputList[1].value = resu.starting_price
-        this.data.inputList[2].value = resu.reserve_price
-        this.data.inputList[3].value = resu.ceiling_price
+          this.data.inputList[0].value = resu.item_name
+          this.data.inputList[1].value = resu.starting_price
+          this.data.inputList[2].value = resu.reserve_price
+          this.data.inputList[3].value = resu.ceiling_price
 
-        this.updateData({
-          detailImg: Array.prototype.isPrototypeOf(resu.description[0].type) ? resu.description[0].type : [],
-          detailVal: resu.description[0].content,
-          isLongShow: true,
-          longDiff: parseInt(longTime/(1000*60*60)),
-          isTimeShow: true,
-          day: days < 10 ? '0'+days : days,
-          hour: hours < 10 ? '0'+hours : hours,
-          minute: minutes < 10 ? '0'+minutes : minutes
-        })
-        
-        console.log(days,hours,minutes,parseInt(longTime/(1000*60*60)),this.data.day)
-      }).catch(err => {
-        console.log(err);
-      });
+          this.updateData({
+            detailImg: Array.prototype.isPrototypeOf(resu.description[0].type) ? resu.description[0].type : [],
+            detailVal: resu.description[0].content,
+            isLongShow: true,
+            longDiff: parseInt(longTime/(1000*60*60)),
+            isTimeShow: true,
+            day: days < 10 ? '0'+days : days,
+            hour: hours < 10 ? '0'+hours : hours,
+            minute: minutes < 10 ? '0'+minutes : minutes
+          })
+          
+          console.log(days,hours,minutes,parseInt(longTime/(1000*60*60)),this.data.day)
+        }).catch(err => {
+          console.log(err);
+        });
+      }
     }	//Function	生命周期函数--监听页面加载
 
     onShow() {}	//	Function	生命周期函数--监听页面显示
