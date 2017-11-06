@@ -249,21 +249,21 @@
           create_time: new Date().getTime()
         }
         console.log(params)
-        wepy.login({
-          success : res => {
-            if(res.code){
-              api.saveItem(params).then(response=>{
-                console.log(response.result.description);
+        // wepy.login({
+        //   success : res => {
+        //     if(res.code){
+              api.saveItem(params).then(result=>{
+                console.log(result.description);
                 this.updateData({
-                  itemid: response.result.id
+                  itemid: result.id
                 })
                 wepy.redirectTo({url: '../list/list'})
               })
-            }else{
-              console.log('获取用户登录态失败！' + res.errMsg)
-            }
-          }
-        })
+        //     }else{
+        //       console.log('获取用户登录态失败！' + res.errMsg)
+        //     }
+        //   }
+        // })
       },
       handlerPub(e){
         let longHours = this.data.longDiff ? this.data.longDiff : this.data.aucLongArr[this.data.aucLongIdnex];
@@ -286,9 +286,9 @@
           create_time: new Date().getTime()
         }
         // console.log(params)
-        wepy.login({
-          success : res => {
-            if(res.code){
+        // wepy.login({
+        //   success : res => {
+        //     if(res.code){
               api.createNewItem(params).then(result=>{
                 console.log(result)
                 this.updateData({
@@ -296,11 +296,11 @@
                 })
                 wepy.redirectTo({url: '../list/list'});
               })
-            }else{
-              console.log('获取用户登录态失败！' + res.errMsg)
-            }
-          }
-        })
+        //     }else{
+        //       console.log('获取用户登录态失败！' + res.errMsg)
+        //     }
+        //   }
+        // })
       }
     };
 
