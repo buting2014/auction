@@ -53,16 +53,16 @@
 
 <template lang="pug">
   view.list-head.f-s-c
-    image.head-img(src="{{avatarUrl}}")
+    image.head-img(src="{{userInfo.avatarUrl}}")
     view.head-info.f-c-s
-      view.name.ellipsis1 {{nickName}}
+      view.name.ellipsis1 {{userInfo.nickName}}
       view.location.ellipsis1
         image.icon(src="/images/icons/location-icon.png")
-        | {{province}}
-      view.wxid.ellipsis1(wx:if="{{wxid}}")
+        | {{userInfo.province}}
+      view.wxid.ellipsis1(wx:if="{{userInfo.wxid}}")
         image.icon(src="/images/icons/email-icon.png")
-        | {{wxid}}
-    image.head-qrcode(src="/images/icons/qrcode.png")
+        | {{userInfo.wxid}}
+    image.head-qrcode(src="/images/icons/qrcode.png", wx:if="{{userInfo.qrcode}}")
 </template>
 
 <script>
@@ -76,16 +76,10 @@
       }
     }
     data = {
-      avatarUrl: '',
-      nickName: '',
-      province: ''
     }
     methods = {
     }
     onLoad () {
-      this.avatarUrl = wepy.getStorageSync('avatarUrl');
-      this.nickName = wepy.getStorageSync('nickName');
-      this.province = wepy.getStorageSync('province');
     }
   }
 </script>

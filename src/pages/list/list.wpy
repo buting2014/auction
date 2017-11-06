@@ -52,7 +52,6 @@
           this.updateData({
             auctionData: result
           })
-          console.log(result)
         }).catch(err => {
           console.log(err);
         });
@@ -76,7 +75,8 @@
         this.updateData({
           auctionData: result
         })
-        console.log(this.auctionData)
+        this.userInfo = wepy.getStorageSync('userInfo');
+        this.$apply()
       }).catch(err => {
         console.log(err);
       });
