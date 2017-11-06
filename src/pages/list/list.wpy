@@ -48,7 +48,8 @@
       changeTab (item, index) {
         this.activeTab = item;
         let shopId = wepy.getStorageSync('shopId');
-        api.getItems(shopId, index--).then(result => {
+        index--;
+        api.getItems(shopId, index).then(result => {
           this.updateData({
             auctionData: result
           })
