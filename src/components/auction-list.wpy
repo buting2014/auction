@@ -28,6 +28,11 @@
         .descript {
           font-size: 24rpx;
           color: rgba(36,37,61,0.50);
+          overflow:hidden;
+          text-overflow:ellipsis;
+          line-clamp:3;
+          -webkit-line-clamp:3;
+          line-height:19px;
         }
         .join-num {
           font-size: 20rpx;
@@ -64,11 +69,11 @@
         view(wx:if="{{item.description[0].type.length > 0}}")
           image.item-image(src="{{item.description[0].type[0]}}")
         view.item-info.f-sb-s
-          view.name {{item.title}}
-          view.descript {{item.final_price}}
-          view.join-num {{item.joinNum}}人参与
-        view.prize ￥{{item.price}}
-    view.empty.f-c-c
+          view.name {{item.item_name}}
+          view.descript {{item.description[0].content ? item.description[0].content : ''}}
+          view.join-num {{item.joinNum ? item.joinNum : 1}}人参与
+        view.prize ￥{{item.starting_price ? item.starting_price : 0}}
+    view.empty.f-c-c(wx:if="{{auctionData.length == 0}}")
       image.empty-icon(src="/images/icons/empty-icon.png")
       | 暂时没有商品哦，点击下方按钮创建拍卖吧
 </template>

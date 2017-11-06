@@ -64,7 +64,7 @@
           // detailData: result,
           item_name: result.item_name,
           end_time:result.end_time,
-          reserve_price:result.reserve_price,//保留价
+          reserve_price:result.reserve_price ? result.reserve_price : result.starting_price,//保留价
           ceiling_price:result.ceiling_price,//最高价
           starting_price:result.starting_price,//起拍价
           fare_increase:result.fare_increase, //加价幅度

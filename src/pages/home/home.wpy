@@ -307,8 +307,8 @@
       let auctionTimeOpt = this.data.auctionTimeIndex;
       this.data.isTimeShow = (auctionTimeOpt[0] || auctionTimeOpt[1] || auctionTimeOpt[2]) ? true : false;
       console.log( auctionTimeOpt[0] || auctionTimeOpt[1] || auctionTimeOpt[2] , (auctionTimeOpt[0] || auctionTimeOpt[1] || auctionTimeOpt[2]) ? true : false  );
-      console.log(params.itemid,'params.itemid')
-      if(!params.itemid){
+      console.log(params.itemid,'params.itemid');
+      if(params.itemid){
         api.getItemDetails(params.itemid).then( result => {
           console.log(result);
           let resu = result;

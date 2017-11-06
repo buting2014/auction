@@ -67,7 +67,7 @@
       view.f-sb-c.second-nav
         view
           image.join-icon(src='/images/icons/detail-header-users.png')
-          text {{joinNum}}人参与
+          text {{joinNum ? joinNum : 1}}人参与
         view.more 查看出价详情
           view.arrow-r
 </template>
