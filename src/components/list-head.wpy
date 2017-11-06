@@ -76,13 +76,16 @@
       }
     }
     data = {
-      avatarUrl: wepy.getStorageSync('avatarUrl'),
-      nickName: wepy.getStorageSync('nickName'),
-      province: wepy.getStorageSync('province')
+      avatarUrl: '',
+      nickName: '',
+      province: ''
     }
     methods = {
     }
     onLoad () {
+      this.avatarUrl = wepy.getStorageSync('avatarUrl');
+      this.nickName = wepy.getStorageSync('nickName');
+      this.province = wepy.getStorageSync('province');
     }
   }
 </script>

@@ -249,21 +249,13 @@
           create_time: new Date().getTime()
         }
         console.log(params)
-        // wepy.login({
-        //   success : res => {
-        //     if(res.code){
-              api.saveItem(params).then(result=>{
-                console.log(result.description);
-                this.updateData({
-                  itemid: result.id
-                })
-                wepy.redirectTo({url: '../list/list'})
-              })
-        //     }else{
-        //       console.log('获取用户登录态失败！' + res.errMsg)
-        //     }
-        //   }
-        // })
+        api.saveItem(params).then(result=>{
+          console.log(result.description);
+          this.updateData({
+            itemid: result.id
+          })
+          wepy.redirectTo({url: '../list/list'})
+        })
       },
       handlerPub(e){
         let longHours = this.data.longDiff ? this.data.longDiff : this.data.aucLongArr[this.data.aucLongIdnex];
@@ -285,22 +277,13 @@
           end_time:end_time ? moment(end_time).valueOf() : 0,
           create_time: new Date().getTime()
         }
-        // console.log(params)
-        // wepy.login({
-        //   success : res => {
-        //     if(res.code){
-              api.createNewItem(params).then(result=>{
-                console.log(result)
-                this.updateData({
-                  itemid: response.result.id
-                })
-                wepy.redirectTo({url: '../list/list'});
-              })
-        //     }else{
-        //       console.log('获取用户登录态失败！' + res.errMsg)
-        //     }
-        //   }
-        // })
+        api.createNewItem(params).then(result=>{
+          console.log(result)
+          this.updateData({
+            itemid: result.id
+          })
+          wepy.redirectTo({url: '../list/list'});
+        })
       }
     };
 

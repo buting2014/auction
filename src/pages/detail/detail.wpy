@@ -58,8 +58,8 @@
     onPrefetch(params, data) {} // 预加载
 
     onLoad(params, data ) {
-      console.log(params.itemid)
-      api.getItemDetails('57dea88769c21000').then(result=>{
+      let userId = wepy.getStorageSync('userId');
+      api.getItemDetails(userId).then(result=>{
         this.updateData({
           // detailData: result,
           item_name: result.item_name,
