@@ -14,6 +14,7 @@ let data = {
   }, {
     type: 'img',
     content: '../../images/slide-temp.png'
-  }]
+  }],
+  itemId:''
 };
 export default data;

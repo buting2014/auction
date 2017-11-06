@@ -11,7 +11,7 @@
     view.detail-content-wrap 
       ShopCard(shopName="远绵绵", shopId=2222)
       DetailContent(:detailData.sync="detailData")
-    InputOffer
+    InputOffer(@pubPirce.user="handlerPubPirce")
 </template>
 
 <script>
@@ -51,7 +51,25 @@
 
     watch = {};
 
-    methods = {};
+    methods = {
+      handlerPubPirce(e,p){
+        console.log(e,p,this.itemId);
+        let params = {
+          price : p
+        }
+        if(p){
+          api.createAuction().then(result=>{
+            console.log(result)
+          })
+        }else{
+          wepy.showToast({
+            title:'出价不能为0',
+            mask:true,
+            duration:1000
+          })
+        }  
+      }
+    };
 
     events = {};
 
@@ -69,10 +87,14 @@
           starting_price:result.starting_price,//起拍价
           fare_increase:result.fare_increase, //加价幅度
           detailData : result.description[0],
-          imgUrls : result.description && Array.prototype.isPrototypeOf(result.description[0].type) ? result.description[0].type : []
+          imgUrls : result.description && Array.prototype.isPrototypeOf(result.description[0].type) ? result.description[0].type : [],
+          itemId: result.id
         })
         console.log(result,'$$$$$',this.imgUrls)
-      })
+      });
+      // this.updateData({
+
+      // })
     }	//Function	生命周期函数--监听页面加载
 
     onShow() {}	//	Function	生命周期函数--监听页面显示

@@ -64,7 +64,7 @@ export function getItemDetails (id) {
 }
 export function createAuction (id, price) {
   // POST /api/items/{id}/auctions
-  return request.post(`${apis.items}/${id}/price`, JSON.stringify({price}));
+  return request.post(`${apis.items}/${id}/price`, price);
 }
 
 export function getPrice (id) {

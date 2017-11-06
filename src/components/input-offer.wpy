@@ -67,9 +67,7 @@
       },
       handlerPrice(e){
         console.log(this.prizeNow)
-        api.createAuction('57dea88769c21000',this.prizeNow).then(result=>{
-          console.log(result)
-        })
+        this.$emit('pubPirce',e,this.prizeNow);
       }
     }
   }
