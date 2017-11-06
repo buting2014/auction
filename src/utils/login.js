@@ -30,11 +30,7 @@ let wxlogin = (cb) => {
 let getUserInfo = (cb) => {
   wepy.getUserInfo({
     success (res) {
-      wepy.setStorageSync('ifLogin', true)
-      let result = res.userInfo
-      for (let key in result) {
-        wepy.setStorageSync(key, result[key])
-      }
+      wepy.setStorageSync('ifLogin', true);
       cb && cb(res.userInfo)
     }
   })
@@ -49,6 +45,11 @@ let login = (user) => {
       wepy.setStorageSync('shopId', result.id);
       wepy.setStorageSync('userId', result.user_id);
       wepy.setStorageSync('token', result.token);
+      let userInfo = Object.assign(user, {
+        qrCode: result.qr_code,
+        wxId: result.wx_id
+      });
+      wepy.setStorageSync('userInfo', userInfo);
       wxloginCb();
     },
     fail: err => {

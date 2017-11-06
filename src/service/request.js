@@ -21,6 +21,7 @@ methods.split(' ').forEach(method => {
         method: method,
         success: res => {
           res.data.code === 100000 && resolve(res.data.result);
+          res.data.code === 100404 && resolve({});
         },
         fail: err => {
           reject(err)
